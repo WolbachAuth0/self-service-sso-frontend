@@ -1,7 +1,10 @@
 {
-  "name": "01-login",
+  "name": "self-service-sso-frontend",
   "version": "0.1.0",
   "private": true,
+  "description": "A single page applicattion web-UI for the Auth0 self-service SSO demo.",
+  "main": "start.js",
+  "author": "aaron.wolbach@okta.com",
   "scripts": {
     "serve": "vite",
     "build": "vite build"
@@ -9,7 +12,6 @@
   "dependencies": {
     "@auth0/auth0-vue": "^2.3.0",
     "@highlightjs/vue-plugin": "^2.1.0",
-    "auth0": "^4.27.0",
     "bootstrap": "^5.3.7",
     "bootstrap-vue-next": "^0.30.4",
     "bootswatch": "^5.3.7",
