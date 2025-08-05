@@ -1,7 +1,12 @@
+import App from './App.vue';
 import { createApp } from "vue";
 import { createRouter } from "./router";
-import { createAuth0 } from "@auth0/auth0-vue";
-import { createBootstrap } from 'bootstrap-vue-next'
+import { auth0 } from './plugins/auth0'
+import { createBootstrap } from 'bootstrap-vue-next';
+import { createPinia } from 'pinia';
+
+// store
+import { useThemeStore } from './stores/themes';
 
 // Highlight.js
 import hljs from 'highlight.js/lib/core';
@@ -11,26 +16,21 @@ import "highlight.js/styles/github.css";
 hljs.registerLanguage('json', json);
 
 // config vars
-const environ = import.meta.env
+const environ = import.meta.env;
 
 // Components
-import App from './App.vue'
 const app = createApp(App);
+const router = createRouter(app);
+const pinia = createPinia();
 
-const router = createRouter(app)
 app
   .use(hljsVuePlugin)
   .use(router)
-  .use(
-    createAuth0({
-      domain: environ.VITE_AUTH0_CUSTOM_DOMAIN,
-      clientId: environ.VITE_AUTH0_CLIENT_ID,
-      // authorizationParams: {
-      //   redirect_uri: environ.VITE_FRONTEND_DOMAIN
-      // }
-    })
-  )
+  .use(pinia)
+  .use(auth0)
   .use(createBootstrap())
+
+// app.config.globalProperties.$themeStore = useThemeStore();
 
 router
   .isReady()

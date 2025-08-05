@@ -1,12 +1,12 @@
 import { createRouter as createVueRouter, createWebHistory, Router } from "vue-router";
+import { createAuthGuard } from "@auth0/auth0-vue";
 import Home from "../views/Home.vue";
 import Profile from "../views/Profile.vue";
 import Register from "../views/Register.vue";
-import { createAuthGuard } from "@auth0/auth0-vue";
 import { App } from 'vue';
 
 export function createRouter(app: App): Router {
-  return createVueRouter({
+  const router = createVueRouter({
     routes: [
       {
         path: "/",
@@ -23,8 +23,11 @@ export function createRouter(app: App): Router {
         path: "/register",
         name: "register",
         component: Register,
+        beforeEnter: createAuthGuard(app)
       }
     ],
-    history: createWebHistory()
+    history: createWebHistory(),
   })
+
+  return router
 }
