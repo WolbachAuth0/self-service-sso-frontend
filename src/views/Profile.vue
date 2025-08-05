@@ -1,12 +1,8 @@
 <template>
-  <div class="container">
+  <BCard class="text-center">
     <div class="row align-items-center profile-header">
       <div class="col-md-2 mb-3">
-        <img
-          :src="user?.picture"
-          alt="User's profile picture"
-          class="rounded-circle img-fluid profile-picture"
-        />
+        <img :src="user?.picture" alt="User's profile picture" class="rounded-circle img-fluid profile-picture" />
       </div>
       <div class="col-md text-center text-md-left">
         <h2>{{ user?.name }}</h2>
@@ -15,9 +11,11 @@
     </div>
 
     <div class="row">
-      <highlightjs language="json" :code="JSON.stringify(user, null, 2)" />
+      <BCard class="text-start">
+        <highlightjs language="json" :code="JSON.stringify(user, null, 2)" />
+      </BCard>
     </div>
-  </div>
+  </BCard>
 </template>
 
 <script lang="ts">

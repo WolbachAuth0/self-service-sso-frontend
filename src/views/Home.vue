@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <BCard class="text-center">
     <h1 class="mb-4">Self Service SSO Demo</h1>
     <p class="lead">
       This is a sample application that demonstrates an authentication flow for an SPA, using
@@ -19,7 +19,7 @@
         <BCardText>{{ card.body }}</BCardText>
       </BCard>
     </BCardGroup>
-  </div>
+  </BCard>
 </template>
 
 <script lang="ts">
