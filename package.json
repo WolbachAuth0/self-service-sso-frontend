@@ -12,10 +12,12 @@
   "dependencies": {
     "@auth0/auth0-vue": "^2.3.0",
     "@highlightjs/vue-plugin": "^2.1.0",
+    "axios": "^1.11.0",
     "bootstrap": "^5.3.7",
     "bootstrap-vue-next": "^0.30.4",
     "bootswatch": "^5.3.7",
     "highlight.js": "^11.9.0",
+    "pinia": "^3.0.3",
     "vue": "^3.3.4",
     "vue-router": "^4.2.1"
   },
