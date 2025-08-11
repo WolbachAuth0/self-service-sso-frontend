@@ -3,6 +3,7 @@ import { createAuthGuard } from "@auth0/auth0-vue";
 import Home from "../views/Home.vue";
 import Profile from "../views/Profile.vue";
 import Register from "../views/Register.vue";
+import Callback from '../views/Callback.vue';
 import { App } from 'vue';
 
 export function createRouter(app: App): Router {
@@ -12,6 +13,10 @@ export function createRouter(app: App): Router {
         path: "/",
         name: "home",
         component: Home
+      },
+      {
+        path: '/callback',
+        component: Callback
       },
       {
         path: "/profile",

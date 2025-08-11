@@ -19,15 +19,15 @@
 </template>
 
 <script lang="ts">
-import { useAuth0 } from '@auth0/auth0-vue';
 
 export default {
   name: "profile-view",
-  setup() {
-    const auth0 = useAuth0();
-    
-    return {
-      user: auth0.user,
+  data () {
+    return {}
+  },
+  computed: {
+    user () {
+      return this.$auth0.user.value
     }
   }
 };

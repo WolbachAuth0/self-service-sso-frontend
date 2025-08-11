@@ -5,9 +5,6 @@ import { auth0 } from './plugins/auth0'
 import { createBootstrap } from 'bootstrap-vue-next';
 import { createPinia } from 'pinia';
 
-// store
-import { useThemeStore } from './stores/themes';
-
 // Highlight.js
 import hljs from 'highlight.js/lib/core';
 import json from 'highlight.js/lib/languages/json';
@@ -29,8 +26,6 @@ app
   .use(pinia)
   .use(auth0)
   .use(createBootstrap())
-
-// app.config.globalProperties.$themeStore = useThemeStore();
 
 router
   .isReady()

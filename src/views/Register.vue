@@ -44,15 +44,13 @@
     </BRow>
   </BContainer>
 
-  <BModal v-model="modal" title="Register Enterprise Identity Provider">
+  <BModal v-model="modal" title="Register Enterprise Identity Provider" min-width="800px">
     <h2>How it works</h2>
     <p>
       When you click the "Register Now" button, a request is made to the Auth0 tenant's management API to create a new "self service SSO" ticket.
     </p>
     
-    <BRow>
-      <h2>Create Enterprise Connection</h2>
-    </BRow>
+    <h5>Create Connection</h5>
     <BRow>
       <BCol sm="3">
         <label for="display_name">Display Name</label>
@@ -77,7 +75,7 @@
   </BModal>
 </template>
 
-<script>
+<script lang="ts">
 import { BButton } from 'bootstrap-vue-next';
 import api from './../services/api.js'
 

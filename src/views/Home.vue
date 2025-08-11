@@ -23,6 +23,8 @@
 </template>
 
 <script lang="ts">
+import { mapActions } from 'pinia';
+import { useThemeStore } from './../stores/themes.js'
 
 export default {
   name: "home-view",
@@ -37,6 +39,18 @@ export default {
         { title: 'Learn about Actions', body: 'Actions are JavaScript functions that execute when a user authenticates to your application. They run once the authentication process is complete, and you can use them to customize and extend Auth0\'s capabilities.' }
       ],
     }
+  },
+  created () {
+    const themeName = this.$route.query?.theme
+    if (themeName) {
+      this.setThemeByName(themeName)
+    }
+  },
+  mounted () {
+    this.applyTheme()
+  },
+  methods: {
+    ...mapActions(useThemeStore, [ 'setThemeByName', 'applyTheme' ])
   }
 };
 </script>

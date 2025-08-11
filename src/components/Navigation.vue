@@ -10,12 +10,12 @@
     <BNavbarToggle target="nav-text-collapse" />
     <BCollapse id="nav-text-collapse" is-nav>
       <BNavbarNav>
-        <BNavItem to="/">Home</BNavItem>
+        <BNavItem :to="`?theme=${themeName}`">Home</BNavItem>
         <BNavItem v-if="isAuthenticated" to="/register">Register B2B</BNavItem>
         <BNavItem v-if="isAuthenticated" to="/profile">Profile</BNavItem>
 
         <BNavItemDropdown :text="`Theme (${themeName})`" :is-nav="true" active right>
-          <BDropdownItem v-for="theme of themes" @click="setTheme(theme)">{{ theme.name }}</BDropdownItem>
+          <BDropdownItem v-for="theme of themes" @click="setTheme(theme)">{{ theme.themeName }}</BDropdownItem>
         </BNavItemDropdown>
       </BNavbarNav>
     </BCollapse>
@@ -59,26 +59,22 @@ export default {
       return this.colorMode == 'light' ? 'black' : 'white'
     }
   },
-  created () {
-    const themeName = this.$route.query?.theme
-    if (themeName) {
-      this.setThemeByName(themeName)
-    }
-  },
-  mounted () {
-    this.applyTheme()
-  },
   methods: {
-    ...mapActions(useThemeStore, [ 'setTheme', 'setThemeByName', 'applyTheme' ]),
+    ...mapActions(useThemeStore, [ 'setTheme' ]),
     async login () {
+      const state = {
+        themeName: this.themeName,
+        colorMode: this.colorMode,
+        variant: this.variant
+      }
+
       const authorizationParams = {
-        redirect_uri: `${environ.VITE_FRONTEND_DOMAIN}?theme=${this.themeName}`,
+        redirect_uri: `${environ.VITE_FRONTEND_DOMAIN}/callback`,
         audience: environ.VITE_API_AUDIENCE,
       }
       const appState = {
-        theme: this.themeName,
-        colorMode: this.colorMode,
-        variant: this.variant
+        target: `${window.location.origin}/profile`,
+        state
       }
       this.$auth0.loginWithRedirect({ authorizationParams, appState })
     },

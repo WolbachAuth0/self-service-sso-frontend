@@ -8,32 +8,32 @@ const useThemeStore = defineStore('theme', {
       colorMode: 'dark',
       variant: 'primary',
       themes: [
-        { name: 'Brite', colorMode: 'light', variant: 'primary' },
-        { name: 'Cerulean', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Cosmo', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Cyborg', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Darkly', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Flatly', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Journal', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Litera', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Lumen', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Lux', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Materia', colorMode: 'light', variant: 'light'  },
-        { name: 'Minty', colorMode: 'dark', variant: 'dark'  },
-        { name: 'Morph', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Pulse', colorMode: 'dark', variant: 'primary'  },
-        // { name: 'Quartz', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Sandstone', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Simplex', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Sketchy', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Slate', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Solar', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Spacelab', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Superhero', colorMode: 'dark', variant: 'primary'  },
-        { name: 'United', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Vapor', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Yeti', colorMode: 'dark', variant: 'primary'  },
-        { name: 'Zephyr', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Brite', colorMode: 'light', variant: 'primary' },
+        { themeName: 'Cerulean', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Cosmo', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Cyborg', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Darkly', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Flatly', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Journal', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Litera', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Lumen', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Lux', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Materia', colorMode: 'light', variant: 'light'  },
+        { themeName: 'Minty', colorMode: 'dark', variant: 'dark'  },
+        { themeName: 'Morph', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Pulse', colorMode: 'dark', variant: 'primary'  },
+        // { themeName: 'Quartz', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Sandstone', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Simplex', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Sketchy', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Slate', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Solar', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Spacelab', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Superhero', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'United', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Vapor', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Yeti', colorMode: 'dark', variant: 'primary'  },
+        { themeName: 'Zephyr', colorMode: 'dark', variant: 'primary'  },
       ]
     }
   },
@@ -56,8 +56,10 @@ const useThemeStore = defineStore('theme', {
       }
       this.applyTheme();
     },
-    setTheme ({ name, colorMode, variant }) {
-      this.themeName = name;
+    setTheme ({ themeName, colorMode, variant }) {
+      console.log('set theme from appState')
+      console.log({ themeName, colorMode, variant })
+      this.themeName = themeName;
       this.colorMode = colorMode;
       this.variant = variant;
       this.applyTheme();
