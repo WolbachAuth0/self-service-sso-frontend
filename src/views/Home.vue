@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { mapActions } from 'pinia';
-import { useThemeStore } from './../stores/themes.js'
+import { useThemeStore } from '../stores/themes.js'
 
 export default {
   name: "home-view",

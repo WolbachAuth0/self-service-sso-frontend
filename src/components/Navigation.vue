@@ -35,7 +35,7 @@
 
 <script>
 import { mapState, mapActions } from 'pinia';
-import { useThemeStore } from './../stores/themes.js'
+import { useThemeStore } from '../stores/themes.js'
 const environ = import.meta.env
 
 export default {

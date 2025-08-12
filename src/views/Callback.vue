@@ -12,7 +12,7 @@
 <script lang="ts">
 import Error from './../components/Error.vue'; 
 import { mapState, mapActions } from 'pinia';
-import { useThemeStore } from './../stores/themes.js';
+import { useThemeStore } from '../stores/themes.js';
 
 export default {
   name: 'Callback',

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AxiosError } from 'axios'
 const environ = import.meta.env;
 
 /**
@@ -14,16 +15,14 @@ function http(accesstoken=null, timeout = 0) {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-    },
+      "Authorization": accesstoken ? `Bearer ${accesstoken}` : undefined
+    }
   };
-  if (accesstoken) {
-    request.headers["Authorization"] = `Bearer ${accesstoken}`;
-  }
   const http = axios.create(request);
   return http;
 }
 
-async function get(auth, url) {
+async function get(auth: any, url: string) {
   try {
     const accesstoken = await auth.getAccessTokenSilently();
     const response = await http(accesstoken).get(url);
@@ -33,7 +32,7 @@ async function get(auth, url) {
   }
 }
 
-async function put(auth, url, data) {
+async function put (auth: any, url: string, data: object) {
   try {
     const accesstoken = await auth.getAccessTokenSilently();
     const response = await http(accesstoken).put(url, data);
@@ -43,7 +42,7 @@ async function put(auth, url, data) {
   }
 }
 
-async function patch(auth, url, data) {
+async function patch (auth: any, url: string, data: object) {
   try {
     const accesstoken = await auth.getAccessTokenSilently();
     const response = await http(accesstoken).patch(url, data);
@@ -53,7 +52,7 @@ async function patch(auth, url, data) {
   }
 }
 
-async function post(auth, url, data) {
+async function post (auth: any, url: string, data: object) {
   try {
     const accesstoken = await auth.getAccessTokenSilently();
     const response = await http(accesstoken).post(url, data);
@@ -63,7 +62,7 @@ async function post(auth, url, data) {
   }
 }
 
-async function remove(auth, url) {
+async function remove (auth: any, url: string) {
   try {
     const accesstoken = await auth.getAccessTokenSilently();
     const response = await http(accesstoken).delete(url);
@@ -73,7 +72,7 @@ async function remove(auth, url) {
   }
 }
 
-function httpErrorHandler (err) {
+function httpErrorHandler (err: AxiosError) {
   if (err?.response?.status == 401) {
     return err.response.data;
   } else if (err?.response?.status == 429) {

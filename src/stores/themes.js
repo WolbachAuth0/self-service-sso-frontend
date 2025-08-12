@@ -40,7 +40,7 @@ const useThemeStore = defineStore('theme', {
   getters: {
     theme (state) {
       return {
-        name: state.themeName,
+        themeName: state.themeName,
         colorMode: state.colorMode,
         variant: state.variant,
       }
@@ -48,9 +48,9 @@ const useThemeStore = defineStore('theme', {
   },
   actions: {
     setThemeByName (themeName) {
-      const theme = this.themes.find(x => String(x.name).toLowerCase() == String(themeName).toLowerCase())
+      const theme = this.themes.find(x => String(x.themeName).toLowerCase() == String(themeName).toLowerCase())
       if (theme) {
-        this.themeName = theme.name,
+        this.themeName = theme.themeName,
         this.colorMode = theme.colorMode,
         this.variant = theme.variant
       }
