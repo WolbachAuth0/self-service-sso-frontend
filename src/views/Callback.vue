@@ -1,18 +1,13 @@
 <template>
   <div>
-
-    <div v-if="loading" class="text-center mb-3 d-flex">
-      <BSpinner variant="primary" />
-    </div>
     <error v-if="error"/>
-
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Error from './../components/Error.vue'; 
 import { mapState, mapActions } from 'pinia';
-import { useThemeStore } from '../stores/themes.js';
+import { useThemeStore } from './../stores/themes.js';
 
 export default {
   name: 'Callback',
@@ -32,28 +27,32 @@ export default {
     ...mapState(useThemeStore, ['themeName', 'colorMode', 'variant']),
   },
   async mounted () {
-    const query = this.$route.query
-    console.log('callback component mounted.');
-    console.log(query)
-    const isAuthenticated = this.$auth0.isAuthenticated.value;
-    console.log('isAuthenticated:', isAuthenticated);
+    this.setLoading(true)
     try {
       // Process the redirect callback from Auth0
       const result = await this.$auth0.handleRedirectCallback();
-      const target = result?.appState?.target ?? '/';
-      if (result?.appState?.state) {
+      const appState = result?.appState;
+      const target = appState?.target ?? '/';
+      
+      if (appState?.state) {
         console.log('setstate')
         this.setTheme(result.appState.state);
       }
-      await router.replace(target);
+
+      window.history.replaceState({}, '', '/');
+
+      if (router) {
+        router.push(target);
+      }
+
     } catch (e) {
       console.error('Callback handling error:', e);
     } finally {
-      this.loading = false;
+      this.setLoading(false);
     }
   },
   methods: {
-    ...mapActions(useThemeStore, [ 'setTheme' ])
+    ...mapActions(useThemeStore, [ 'setTheme', 'setLoading' ])
   }
 };
 </script>

@@ -2,27 +2,23 @@
   <BCard class="text-center">
     <h1 class="mb-4">Self Service SSO Demo</h1>
     <p class="lead">
-      This is a sample application that demonstrates an authentication flow for an SPA, using
-      <a href="https://vuejs.org" >Vue.js</a>
+      Using Auth0 for Self-Service SSO and SCIM significantly benefits both SaaS providers and their enterprise customers by accelerating onboarding, enhancing security, and reducing administrative overhead. Instead of managing these integrations manually, the process is streamlined and delegated to the customer's IT team. 
     </p>
 
-    <h2 class="my-5 text-center">What can I do next?</h2>
+    <template v-for="row of cardGroups">
+      <h3>{{ row.title }}</h3>
+      <BCardGroup deck class="my-3">
+        <BCard v-for="card of row.items" border-variant="primary" :header="card.title" align="center">
+          <BCardText>{{ card.body }}</BCardText>
+        </BCard>
+      </BCardGroup>
+    </template>
+    
 
-    <BCardGroup deck>
-      <BCard v-for="card of firstRow" border-variant="primary" :header="card.title" align="center">
-        <BCardText>{{ card.body }}</BCardText>
-      </BCard>
-    </BCardGroup>
-
-    <BCardGroup deck class="my-3">
-      <BCard v-for="card of secondRow" border-variant="primary" :header="card.title" align="center">
-        <BCardText>{{ card.body }}</BCardText>
-      </BCard>
-    </BCardGroup>
   </BCard>
 </template>
 
-<script lang="ts">
+<script>
 import { mapActions } from 'pinia';
 import { useThemeStore } from '../stores/themes.js'
 
@@ -30,13 +26,34 @@ export default {
   name: "home-view",
   data () {
     return {
-      firstRow: [
-        { title: 'Configure other identity providers', body: 'Auth0 supports social providers as Facebook, Twitter, Instagram and 100+, Enterprise providers as Microsoft Office 365, Google Apps, Azure, and more. You can also use any OAuth2 Authorization Server.' },
-        { title: 'Enable Multifactor Authentication', body: 'Add an extra layer of security by enabling Multi-factor Authentication, requiring your users to provide more than one piece of identifying information. Push notifications, authenticator apps, SMS, and DUO Security are supported.' }
-      ],
-      secondRow: [
-        { title: 'Anomaly Detection', body: 'Auth0 can detect anomalies and stop malicious attempts to access your application. Anomaly detection can alert you and your users of suspicious activity, as well as block further login attempts.' },
-        { title: 'Learn about Actions', body: 'Actions are JavaScript functions that execute when a user authenticates to your application. They run once the authentication process is complete, and you can use them to customize and extend Auth0\'s capabilities.' }
+      cardGroups: [
+        {
+          title: 'Shorter sales and onboarding cycles',
+          items: [
+            {
+              title: 'Reduces developer and support workload',
+              body: 'Your engineering team is freed from custom integration requests and repetitive, back-and-forth communication with customer IT teams. This allows your developers to focus on your core product. '
+            },
+            {
+              title: 'Improves enterprise readiness',
+              body: 'Offering these self-service capabilities can be a key competitive differentiator, helping your SaaS application secure more enterprise contracts. Enterprise buyers often look for applications that can seamlessly integrate with their existing identity management systems.'
+            },
+          ],
+        },
+        {
+          title: 'Reduced operational overhead',
+          items: [
+            {
+              title: 'Automated provisioning',
+              body: 'Auth0\'s SCIM capabilities automate the creation, update, and deletion of user accounts in real-time, eliminating manual, error-prone tasks for your team.'
+            },
+            {
+              title: 'Simplified license management',
+              body: 'SCIM enables more accurate and automated billing by providing a real-time count of active seats. This avoids situations where customers are overcharged for former employees who were not manually de-provisioned. '
+            },
+          ],
+        },
+        
       ],
     }
   },

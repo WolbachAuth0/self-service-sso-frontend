@@ -10,7 +10,7 @@
     <BNavbarToggle target="nav-text-collapse" />
     <BCollapse id="nav-text-collapse" is-nav>
       <BNavbarNav>
-        <BNavItem :to="`?theme=${themeName}`">Home</BNavItem>
+        <BNavItem :to="`/`">Home</BNavItem>
         <BNavItem v-if="isAuthenticated" to="/register">Register B2B</BNavItem>
         <BNavItem v-if="isAuthenticated" to="/profile">Profile</BNavItem>
 
@@ -49,9 +49,9 @@ export default {
     isAuthenticated () {
       return this.$auth0.isAuthenticated.value
     },
-    isLoading () {
-      return this.$auth0.isLoading.value
-    },
+    // isLoading () {
+    //   return this.$auth0.isLoading.value
+    // },
     user () {
       return this.$auth0.user.value
     },
@@ -73,7 +73,7 @@ export default {
         audience: environ.VITE_API_AUDIENCE,
       }
       const appState = {
-        target: `${window.location.origin}/profile`,
+        target: `/profile`,
         state
       }
       this.$auth0.loginWithRedirect({ authorizationParams, appState })
@@ -81,7 +81,7 @@ export default {
     async logout () {
       await this.$auth0.logout({
         logoutParams: {
-          returnTo: `${window.location.origin}?theme=${this.themeName}`
+          returnTo: `${window.location.origin}`
         }
       });
     }

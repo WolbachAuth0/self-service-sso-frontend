@@ -75,9 +75,9 @@
   </BModal>
 </template>
 
-<script lang="ts">
+<script>
 import { BButton } from 'bootstrap-vue-next';
-import api from '../services/api.js'
+import api from './../services/api.js';
 
 export default {
   name: "register-view",

@@ -9,7 +9,8 @@ const config = {
   authorizationParams: {
     audience: environ.VITE_API_AUDIENCE,
     redirect_uri: `${environ.VITE_FRONTEND_DOMAIN}\callback`
-  }
+  },
+  skipRedirectCallback: true
 }
 
 const auth0 = createAuth0(config);

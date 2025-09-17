@@ -24,11 +24,11 @@ app
   .use(hljsVuePlugin)
   .use(router)
   .use(pinia)
-  .use(auth0)
   .use(createBootstrap())
 
 router
   .isReady()
   .then(() => {
+    app.use(auth0);
     app.mount('#app');
   });

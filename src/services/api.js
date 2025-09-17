@@ -22,7 +22,7 @@ function http(accesstoken=null, timeout = 0) {
   return http;
 }
 
-async function get(auth: any, url: string) {
+async function get(auth, url) {
   try {
     const accesstoken = await auth.getAccessTokenSilently();
     const response = await http(accesstoken).get(url);
@@ -32,7 +32,7 @@ async function get(auth: any, url: string) {
   }
 }
 
-async function put (auth: any, url: string, data: object) {
+async function put (auth, url, data) {
   try {
     const accesstoken = await auth.getAccessTokenSilently();
     const response = await http(accesstoken).put(url, data);
@@ -42,7 +42,7 @@ async function put (auth: any, url: string, data: object) {
   }
 }
 
-async function patch (auth: any, url: string, data: object) {
+async function patch (auth, url, data) {
   try {
     const accesstoken = await auth.getAccessTokenSilently();
     const response = await http(accesstoken).patch(url, data);
@@ -52,7 +52,7 @@ async function patch (auth: any, url: string, data: object) {
   }
 }
 
-async function post (auth: any, url: string, data: object) {
+async function post (auth, url, data) {
   try {
     const accesstoken = await auth.getAccessTokenSilently();
     const response = await http(accesstoken).post(url, data);
@@ -62,7 +62,7 @@ async function post (auth: any, url: string, data: object) {
   }
 }
 
-async function remove (auth: any, url: string) {
+async function remove (auth, url) {
   try {
     const accesstoken = await auth.getAccessTokenSilently();
     const response = await http(accesstoken).delete(url);
@@ -72,7 +72,7 @@ async function remove (auth: any, url: string) {
   }
 }
 
-function httpErrorHandler (err: AxiosError) {
+function httpErrorHandler (err) {
   if (err?.response?.status == 401) {
     return err.response.data;
   } else if (err?.response?.status == 429) {
