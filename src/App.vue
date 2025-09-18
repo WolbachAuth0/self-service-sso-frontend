@@ -4,13 +4,13 @@
 
     <div class="container">
       <BProgress
-        class="mt-3"
+        class="mt-2"
         :variant="variant"
         :value="100"
         :animated="loading"
       />
 
-      <BCard border-variant="primary" variant="secondary" class="mt-2">
+      <BCard border-variant="primary" variant="secondary" class="my-2">
         <router-view />
       </BCard>
     </div>
