@@ -14,9 +14,9 @@
         <BNavItem v-if="isAuthenticated" to="/register">Register B2B</BNavItem>
         <BNavItem v-if="isAuthenticated" to="/profile">Profile</BNavItem>
 
-        <BNavItemDropdown :text="`Theme (${themeName})`" :is-nav="true" active right>
+        <!-- <BNavItemDropdown :text="`Theme (${themeName})`" :is-nav="true" active right>
           <BDropdownItem v-for="theme of themes" @click="setTheme(theme)">{{ theme.themeName }}</BDropdownItem>
-        </BNavItemDropdown>
+        </BNavItemDropdown> -->
       </BNavbarNav>
     </BCollapse>
 
@@ -69,7 +69,7 @@ export default {
       }
 
       const authorizationParams = {
-        redirect_uri: `${environ.VITE_FRONTEND_DOMAIN}/callback`,
+        redirect_uri: `${environ.VITE_FRONTEND_DOMAIN}`,
         audience: environ.VITE_API_AUDIENCE,
       }
       const appState = {
