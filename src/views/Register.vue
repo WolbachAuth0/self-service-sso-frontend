@@ -86,8 +86,8 @@ export default {
       modal: false,
       ticket_url: null,
       connection: {
-        name: 'my-test-connection',
-        display_name: 'My Test Connection',
+        name: 'customer-okta-idp',
+        display_name: 'My B2B Customers Okta IdP',
         icon_url: 'https://raw.githubusercontent.com/WolbachAuth0/image-repo/main/public/connection.png?raw=true'
       },
       valueItems: [
